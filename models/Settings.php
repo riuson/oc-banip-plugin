@@ -6,7 +6,7 @@
  * Time: 5:56 PM
  */
 
-namespace filipac\Banip\Models;
+namespace Filipac\Banip\Models;
 
 use Cms\Classes\Layout;
 use Cms\Classes\Theme;

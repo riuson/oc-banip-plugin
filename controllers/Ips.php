@@ -1,4 +1,4 @@
-<?php namespace filipac\Banip\Controllers;
+<?php namespace Filipac\Banip\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -25,7 +25,7 @@ class Ips extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('filipac.Banip', 'banip', 'ips');
+        BackendMenu::setContext('Filipac.Banip', 'banip', 'ips');
     }
 
     /**

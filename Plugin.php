@@ -1,10 +1,10 @@
-<?php namespace filipac\Banip;
+<?php namespace Filipac\Banip;
 
 use Backend\Facades\Backend;
 use Cms\Classes\Layout;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
-use filipac\Banip\Models\Settings;
+use Filipac\Banip\Models\Settings;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
@@ -37,7 +37,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'Ban IP',
             'description' => 'Simple plugin to ban certain IPs',
-            'author'      => 'filipac',
+            'author'      => 'Filipac',
             'icon'        => 'icon-leaf',
             'version'     => '1.0.1'
         ];
@@ -96,7 +96,7 @@ class Plugin extends PluginBase
     {
         $ip = Request::ip();
         try {
-            $match = \filipac\Banip\Models\Ip::where('address','=',$ip)->get();
+            $match = \Filipac\Banip\Models\Ip::where('address','=',$ip)->get();
         } catch (QueryException $e) {
             \Log::info('The Filipac.Banip was not properly installed (missing table)');
             return;

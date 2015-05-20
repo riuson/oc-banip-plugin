@@ -1,4 +1,4 @@
-<?php namespace filipac\Banip\Models;
+<?php namespace Filipac\Banip\Models;
 
 use Model;
 

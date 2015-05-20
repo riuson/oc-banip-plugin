@@ -6,7 +6,7 @@
 list: $/filipac/banip/models/ip/columns.yaml
 
 # Model Class name
-modelClass: filipac\Banip\Models\Ip
+modelClass: Filipac\Banip\Models\Ip
 
 # List Title
 title: Manage Ips
