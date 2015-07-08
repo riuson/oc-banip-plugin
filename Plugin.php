@@ -39,7 +39,7 @@ class Plugin extends PluginBase
             'description' => 'Simple plugin to ban certain IPs',
             'author'      => 'Filipac',
             'icon'        => 'icon-leaf',
-            'version'     => '1.0.1'
+            'version'     => '1.0.3'
         ];
     }
 
