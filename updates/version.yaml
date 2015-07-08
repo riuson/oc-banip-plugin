@@ -2,3 +2,4 @@
   - First version of Banip
   - create_ips_table.php
 1.0.2: Use Illuminate component to get the IP to prevent spoofing
+1.0.3: Fix version to allow updates (in Plugin.php)
