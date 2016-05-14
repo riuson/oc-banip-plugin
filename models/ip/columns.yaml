@@ -6,3 +6,6 @@ columns:
     address:
         label: Address
         searchable: true
+    mask:
+        label: Mask
+        searchable: true

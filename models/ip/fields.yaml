@@ -9,3 +9,7 @@ fields:
             required: true
             attributes:
                 default-focus: 1
+    mask:
+            label: Mask
+            span: full
+            required: true
