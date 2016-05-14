@@ -1,6 +1,9 @@
-1.0.1:
+﻿1.0.1:
   - First version of Banip
   - create_ips_table.php
 1.0.2: Use Illuminate component to get the IP to prevent spoofing
 1.0.3: Fix version to allow updates (in Plugin.php)
 1.0.4: Respect when there is no layout selected
+1.0.5:
+  - Add field 'mask' to table 'filipac_banip_ips'
+  - ips_table_add_column_mask.php
