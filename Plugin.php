@@ -96,7 +96,7 @@ class Plugin extends PluginBase
     {
         $ip = Request::ip();
         try {
-            $match = \Filipac\Banip\Models\Ip::where('address','=',$ip)->get();
+            $match = $this->getMatchedBanIp($ip);
         } catch (QueryException $e) {
             \Log::info('The Filipac.Banip was not properly installed (missing table)');
             return;
@@ -133,5 +133,16 @@ class Plugin extends PluginBase
         return (php_sapi_name() === 'cli');
     }
 
+    private function getMatchedBanIp($ip)
+    {
+        // Numeric form of ip
+        $numericIp = ip2long($ip);
+        // Convert to unsigned integer representation
+        $u32StrIp = sprintf("%u", $numericIp);
 
+        $match = \Filipac\Banip\Models\Ip::where('lower_ip_range', '<=', $u32StrIp)
+            ->where('upper_ip_range', '>=', $u32StrIp)
+            ->get();
+        return $match;
+    }
 }
