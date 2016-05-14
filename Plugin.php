@@ -96,9 +96,9 @@ class Plugin extends PluginBase
     {
         $ip = Request::ip();
         try {
-            $match = \Filipac\Banip\Models\Ip::where('address','=',$ip)->get();
+            $match = $this->getMatchedBanIp($ip);
         } catch (QueryException $e) {
-            \Log::info('The Filipac.Banip was not properly installed (missing table)');
+            \Log::info('The Filipac.Banip was not properly installed (missing table)' . $e);
             return;
         }
 
@@ -133,5 +133,23 @@ class Plugin extends PluginBase
         return (php_sapi_name() === 'cli');
     }
 
+    private function getMatchedBanIp($ip)
+    {
+        /*
+            SET @ip:='10.0.0.1';
 
+            SELECT *, (4294967295 << (32 - CAST(`mask` AS UNSIGNED))) AS bitmask
+            FROM `filipac_banip_ips`
+            HAVING (CAST(INET_ATON(`address`) AS UNSIGNED) & bitmask) = (CAST(INET_ATON(@ip) AS UNSIGNED) & bitmask);
+        */
+
+        $match = \Filipac\Banip\Models\Ip::select(
+            [
+                '*',
+                \DB::raw('(4294967295 << (32 - CAST(`mask` AS UNSIGNED))) AS bitmask')
+            ])
+            ->havingRaw("(CAST(INET_ATON(`address`) AS UNSIGNED) & bitmask) = (CAST(INET_ATON('$ip') AS UNSIGNED) & bitmask)")
+            ->get();
+        return $match;
+    }
 }
