@@ -5,11 +5,11 @@
 fields:
     address:
             label: Address
-            span: full
+            span: left
             required: true
             attributes:
                 default-focus: 1
     mask:
             label: Mask
-            span: full
+            span: right
             required: true

@@ -60,10 +60,15 @@ class Ips extends Controller
         $this->listConfig = 'config_list.yaml';
         $this->makeLists();
         $v = Validator::make(Input::all(), [
-         'Ip.address' => 'required|ip'
+         'Ip.address' => 'required|ip|unique:filipac_banip_ips,address',
+         'Ip.mask' => 'required|integer|min:1|max:32',
         ], [
             'Ip.address.required' => 'Please enter an valid IP Address to ban',
-            'Ip.address.ip' => 'Please enter an valid IP Address to ban'
+            'Ip.address.ip' => 'Please enter an valid IP Address to ban',
+            'Ip.address.unique' => 'Please enter an unique IP Address to ban',
+            'Ip.mask.integer' => 'Please enter an integer value between 1 and 32',
+            'Ip.mask.min' => 'Please enter an integer value between 1 and 32',
+            'Ip.mask.max' => 'Please enter an integer value between 1 and 32',
         ]);
         if($v->fails()) {
             Flash::error(implode('<br>',$v->messages()->all()));
@@ -71,6 +76,7 @@ class Ips extends Controller
         }
         $ip = new Ip;
         $ip->address = Input::all()['Ip']['address'];
+        $ip->mask = Input::all()['Ip']['mask'];
         $ip->save();
         Flash::success('The IP was banned.');
         return ['success'=>true] + $this->listRefresh('Lists');
