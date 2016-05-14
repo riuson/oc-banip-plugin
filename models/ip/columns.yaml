@@ -4,5 +4,11 @@
 
 columns:
     address:
-        label: Address
+        label: Address start
+        searchable: true
+    address_end:
+        label: Address end
+        searchable: true
+    mask:
+        label: Mask
         searchable: true

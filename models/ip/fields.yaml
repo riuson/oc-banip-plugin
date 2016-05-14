@@ -4,8 +4,18 @@
 
 fields:
     address:
-            label: Address
-            span: full
-            required: true
-            attributes:
-                default-focus: 1
+        label: Address first
+        span: left
+        required: true
+        attributes:
+            default-focus: 1
+    address_end:
+        label: Address last
+        span: right
+        required: false
+        default: ''
+    mask:
+        label: Mask
+        span: left
+        required: false
+        default: 32
