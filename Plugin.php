@@ -111,6 +111,7 @@ class Plugin extends PluginBase
             });
             Event::listen('cms.page.display', function($controller, $path, $page, $content) {
                 $layout = Settings::get('layout');
+                $page->layout = null;
                 if(!empty($layout) AND Layout::load(Theme::getActiveTheme(), $layout) !== null)
                     $page->layout = $layout;
                 else
