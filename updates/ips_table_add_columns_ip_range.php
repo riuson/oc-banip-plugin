@@ -1,7 +1,9 @@
 <?php namespace Filipac\Banip\Updates;
 
+use DB;
 use Schema;
 use October\Rain\Database\Updates\Migration;
+use filipac\Banip\Models\Ip as IpModel;
 
 class IpsTableAddColumnMask  extends Migration
 {
@@ -17,6 +19,13 @@ class IpsTableAddColumnMask  extends Migration
             $table->integer('mask')->after('address')->default(32);
             // Add column `mask`
             $table->string('address_end')->after('address');
+        });
+
+        IpModel::chunk(100, function ($items) {
+            foreach ($items as $item) {
+                IpModel::correctFields($item);
+                $item->save();
+            }
         });
     }
 
