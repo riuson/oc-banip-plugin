@@ -6,5 +6,4 @@
 1.0.4: Respect when there is no layout selected
 1.0.5:
   - Ban IPs by range
-  - Add fields for ip range to table 'filipac_banip_ips'
   - ips_table_add_columns_ip_range.php
